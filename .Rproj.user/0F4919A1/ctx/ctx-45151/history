@@ -1,0 +1,12 @@
+install.packages("ggplot2")
+install.packages("dplyr")
+library(ggplot2)
+library(dplyr)
+top_states <- covid_data %>%
+group_by(state) %>%
+summarise(total_cases = max(cases)) %>%
+arrange(desc(total_cases)) %>%
+head(6) %>%
+pull(state)
+```{r, message=FALSE, warning=FALSE}
+install.packages("tidyverse")

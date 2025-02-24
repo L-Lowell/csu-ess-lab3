@@ -1,0 +1,74 @@
+---
+title: "Penguins Data Analysis"
+format: html
+author: Lance Lowell
+---
+
+# Attach the `palmerspenguins` package
+
+```{r}
+library(palmerpenguins)
+data("penguins")
+summary(penguins)
+```
+
+# 1. Examine at the dataset using the ?Help page
+
+```{r}
+?penguins
+```
+
+# 2. what is the class of the penguins dataset?
+
+```{r}
+class(penguins)
+```
+
+# 3. what is the structure of the penguins dataset?
+
+```{r}
+str(penguins)
+```
+
+# 4. what are the dimensions of the penguins dataset?
+
+```{r}
+dim(penguins)
+```
+
+# 5. what are the column names of the penguins dataset?
+
+```{r}
+names(penguins)
+```
+
+# 6. what type of data is `flipper_length_mm` and `Island`?
+
+```{r}
+class(penguins$flipper_length_mm)
+class(penguins$island)
+```
+
+# 7. what is the mean flipper length of the penguins?
+
+```{r}
+mean(penguins$flipper_length_mm, na.rm = TRUE)
+```
+
+# 8. what is the standard deviation of flipper length in the penguins?
+
+```{r}
+sd(penguins$flipper_length_mm, na.rm = TRUE)
+```
+
+# 9. what is the median body mass of the penguins?
+
+```{r}
+median(penguins$body_mass_g, na.rm = TRUE)
+```
+
+# 10. what is the Island of the 100th penguin?
+
+```{r}
+penguins$island[100]
+```
