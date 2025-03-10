@@ -1,0 +1,6 @@
+---
+title: "My Assignment"
+output: 
+  html_document:
+    self-contained: true
+---

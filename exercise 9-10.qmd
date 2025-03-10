@@ -1,0 +1,68 @@
+---
+title: "My Quarto Document"
+author: "Lance Lowell"
+date: "2025-03-01"
+format: html
+execute:
+  echo: true
+---
+#Use the help (?) function to learn more about the dataset
+```{r}
+library(tidyverse)
+library(visdat)
+library(broom)
+
+data("airquality")
+
+?airquality
+```
+ 
+#Use vis_dat to check out the data
+```{r}
+vis_dat(airquality)
+vis_miss(airquality)
+```
+#It clearly needs cleaning as 4.8% of the data is missing!
+
+#Fit a linear model to the cleaned data to predict Ozone from one of the possible predictors of your choosing. Why did you chose that variable?
+```{r}
+airquality_clean <- airquality %>% drop_na()
+
+model <- lm(Ozone ~ Temp, data = airquality_clean)
+```
+#I chose temperature because I want to see the relationship between Ozone and temperature like my prfessors have talked about in my other ESS couses for myself.
+
+
+
+#Using summary(), Does this seem like a valid model?
+```{r}
+
+summary(model)
+```
+#This is not a valid model.
+#The R squared value says only 48.8%  (48.3% adjusted) of the variability in ozone levels can be explained by changes in temperature.  That means less than half of the data is explained by the model
+
+#Use broom::augment to predict the Ozone of the cleaned data
+```{r}
+predictionstation <- broom::augment(model, airquality_clean)
+
+head(predictionstation)
+```
+
+#Use ggplot to plot the actual vs predicted Ozone
+```{r}
+ggplot(predictionstation, aes(x = Ozone, y = .fitted)) +
+  geom_point(color = "navy") +  
+  ##Add a red line to show where the actual and predicted values are equal
+  geom_abline(intercept = 0, slope = 1, color = "red") +
+#Add a subtitle to the plot showing the correlation between the actual and predicted values are equal
+  labs(
+    title = "Actual vs Predicted Ozone",
+    subtitle = paste("Correlation:"),
+    x = "Real Ozone",
+    y = "Predicted Ozone"
+  ) +
+  theme_classic()
+```
+
+

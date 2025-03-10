@@ -56,4 +56,4 @@ plot_covid_regions <- ggplot(regional_covid_long, aes(x = ymd(date), y = count, 
 print(plot_covid_regions)
 
 # Save the plot
-ggsave("cumulative_cases_deaths_by_region.png", plot = plot_covid_regions, width = 12, height = 8, dpi = 300)
+ggsave(file.path("img", "cumulative_cases_deaths_by_region.png"), plot = plot_covid_regions)
